@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marksheet</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #428bca;
+}
+h2{
+    color: #428bca;
+    text-align: center;
+
+}
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    flex: 1;
+    font-weight: bold;
+}
+
+.input-group input {
+    flex: 2;
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+    
+}
+
+.input-group:last-child {
+    margin-bottom: 0;
+}
+
+button {
+    background-color: #428bca;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #3279b5;
+}
+
+/* Adjust font size of input placeholders for smaller screens */
+@media (max-width: 600px) {
+    .input-group input::placeholder {
+        font-size: 12px;
+    }
+ 
+    .heading-p{
+    font-size: 20px;
+}
+ 
+}
+@media (min-width: 600px) {
+.heading-p{
+    font-size: 30px;
+}
+
+}
+@media (max-width: 515px) {
+    label{
+   font-size: 0.89rem;
+}
+}
+@media (max-width: 450px) {
+    label{
+   font-size: 0.79rem;
+}
+.input-group input {
+   
+    font-size: 10px;
+}
+button {
+    background-color: #428bca;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    width: 100%;
+}
+}
+@media (max-width: 400px) {
+    label{
+   font-size: 0.75rem;
+   margin-right: 5px;
+}
+
+.input-group input {
+    flex: 1;
+    font-size: 8px;
+}
+input {
+    /* margin-left: 4px; */
+    display: flex;
+    align-items: center;
+    flex: 1;
+   padding: 5px;
+    font-size: 4px;
+}
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="heading-p">Board of Intermediate Education Karachi</h1>
+
+        <form class="main">
+            <div class="input-group">
+                <label for="Sname">Student Name</label>
+                <input type="text" placeholder="Enter Student name...." id="Sname">
+            </div>
+
+            <div class="input-group">
+                <label for="fname">Father Name</label>
+                <input type="text" placeholder="Enter Father name...." id="fname">
+            </div>
+
+            <div class="input-group">
+                <label for="Roll-no">Roll Number</label>
+                <input type="text" placeholder="Enter Roll no...." id="Roll-no">
+            </div>
+
+            <div class="input-group">
+                <label for="class">College Name</label>
+                <input type="text" placeholder="Enter College name...." id="class">
+            </div>
+        </form>
+
+        <h2 class=".heading-p">Subject Marks</h2>
+
+        <form class="main">
+            <div class="input-group">
+                <label for="english">English Marks</label>
+                <input type="number" placeholder="Enter English marks" id="english">
+            </div>
+
+            <div class="input-group">
+                <label for="urdu">Urdu Marks</label>
+                <input type="number" placeholder="Enter Urdu marks" id="urdu">
+            </div>
+
+            <div class="input-group">
+                <label for="math">Math Marks</label>
+                <input type="number" placeholder="Enter Math marks" id="math">
+            </div>
+
+            <div class="input-group">
+                <label for="physics">Physics Marks</label>
+                <input type="number" placeholder="Enter Physics marks" id="physics">
+            </div>
+
+            <div class="input-group">
+                <label for="pst">PST Marks</label>
+                <input type="number" placeholder="Enter PST marks" id="pst">
+            </div>
+
+            <div class="input-group">
+                <label for="computer">Computer Marks</label>
+                <input type="number" placeholder="Enter Computer marks" id="computer">
+            </div>
+
+            <button type="button" onclick="grading()">Generate Marksheet</button>
+        </form>
+    </div>
+
+    <script>
+       
+   
+   function grading() {
+       let Sname = document.querySelector("#Sname").value;
+       let fname = document.querySelector("#fname").value;
+       let Rollno = document.querySelector("#Roll-no").value;
+       let clas = document.querySelector("#class").value;
+       let english = +document.querySelector("#english").value;
+       let urdu = +document.querySelector("#urdu").value;
+       let math = +document.querySelector("#math").value;
+       let physics = +document.querySelector("#physics").value;
+       let pst = +document.querySelector("#pst").value;
+       let computer = +document.querySelector("#computer").value;
+       let total = urdu + math + physics + computer + english + pst; // Using unary plus
+       let percentage = (total / 600) * 100;
+       let grade;
+
+       if (percentage >= 80) {
+           grade = "A-one";
+       } else if (percentage >= 69) {
+           grade = "A";
+       } else if (percentage >= 59) {
+           grade = "B";
+       } else if (percentage >= 49) {
+           grade = "C";
+       } else if (percentage >= 39) {
+           grade = "D";
+       } else {
+           grade = "Fail";
+       }
+
+       if (
+           Sname !== "" &&
+           fname !== "" &&
+           Rollno !== "" &&
+           clas !== "" &&
+           english !== "" &&
+           urdu !== "" &&
+           math !== "" &&
+           physics !== "" &&
+           pst !== "" &&
+           computer !== "" &&
+           total !== "" &&
+           !isNaN(percentage) &&
+           grade !== ""
+       ) {
+           if ('sessionStorage' in window) {
+               sessionStorage.setItem("Username", Sname);
+               sessionStorage.setItem("Fathername", fname);
+               sessionStorage.setItem("Roll", Rollno);
+               sessionStorage.setItem("class", clas);
+               sessionStorage.setItem("english", english);
+               sessionStorage.setItem("urdu", urdu);
+               sessionStorage.setItem("math", math);
+               sessionStorage.setItem("physics", physics);
+               sessionStorage.setItem("computer", computer);
+               sessionStorage.setItem("pst", pst);
+
+               window.location.href = "output.html";
+           } else {
+               alert("Session storage is not available");
+           }
+       } else {
+           alert("Please fill in all the fields.");
+       }
+   }
+    </script>
+</body>
+
+</html>
+
+
+   
+ 
+
+
+   
+

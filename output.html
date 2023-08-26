@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marksheet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            padding-left: 20px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .main-heading-p {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 25px;
+            font-weight: bolder;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        span.grade {
+            font-weight: bold;
+            color: #428bca;
+        }
+
+        @media (max-width:600px) {
+            
+        .main-heading-p {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+font-weight: bolder;
+        }
+        }
+        @media (max-width:500px) {
+            
+            .main-heading-p {
+                text-align: center;
+                margin-bottom: 20px;
+                font-size: 15px;
+    font-weight: bolder;
+            }
+            }
+            
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main-heading-p" style="   color: #428bca; font-weight: bold;">
+            Board of Intermediate Education Karachi
+        </div>
+
+        <div>
+            <p><strong>Student Name:</strong> <span id="outputSname"></span></p>
+            <p><strong>Father Name:</strong> <span id="outputFname"></span></p>
+            <p><strong>Roll Number:</strong> <span id="outputRollno"></span></p>
+            <p><strong>College name:</strong> <span id="outputClass"></span></p>
+        </div>
+
+        <table>
+            <tr>
+                <th>Subject</th>
+                <th>Marks</th>
+            </tr>
+            <tr>
+                <td>English</td>
+                <td id="outputEnglish"></td>
+            </tr>
+            <tr>
+                <td>Urdu</td>
+                <td id="outputUrdu"></td>
+            </tr>
+            <tr>
+                <td>Math</td>
+                <td id="outputMath"></td>
+            </tr>
+            <tr>
+                <td>Physics</td>
+                <td id="outputPhysics"></td>
+            </tr>
+            <tr>
+                <td>PST</td>
+                <td id="outputPst"></td>
+            </tr>
+            <tr>
+                <td>Computer</td>
+                <td id="outputComputer"></td>
+            </tr>
+        </table>
+
+        <p><strong>Total Marks:</strong> <span id="outputTotal"></span></p>
+        <p><strong>Percentage:</strong> <span id="outputPercentage"></span>%</p>
+        <p><strong>Grade:</strong> <span id="outputGrade" class="grade"></span></p>
+    </div>
+
+    <script>
+
+        // Retrieve values from session storage
+        let Sname = sessionStorage.getItem("Username");
+        let fname = sessionStorage.getItem("Fathername");
+        let Rollno = sessionStorage.getItem("Roll");
+        let clas = sessionStorage.getItem("class");
+        let english = +sessionStorage.getItem("english");
+        let urdu = +sessionStorage.getItem("urdu");
+        let math = +sessionStorage.getItem("math");
+        let physics = +sessionStorage.getItem("physics");
+        let pst = +sessionStorage.getItem("pst");
+        let computer = +sessionStorage.getItem("computer");
+        let total = urdu + math + physics + computer + english + pst;
+        let percentage = (total / 600) * 100;
+        let grade;
+
+        if (percentage >= 80) {
+            grade = "A-one";
+        } else if (percentage >= 69) {
+            grade = "A";
+        } else if (percentage >= 59) {
+            grade = "B";
+        } else if (percentage >= 49) {
+            grade = "C";
+        } else if (percentage >= 39) {
+            grade = "D";
+        } else {
+            grade = "Fail";
+        }
+
+        // Display retrieved values in the HTML
+        document.getElementById("outputSname").textContent = Sname;
+        document.getElementById("outputFname").textContent = fname;
+        document.getElementById("outputRollno").textContent = Rollno;
+        document.getElementById("outputClass").textContent = clas;
+        document.getElementById("outputEnglish").textContent = english;
+        document.getElementById("outputUrdu").textContent = urdu;
+        document.getElementById("outputMath").textContent = math;
+        document.getElementById("outputPhysics").textContent = physics;
+        document.getElementById("outputPst").textContent = pst;
+        document.getElementById("outputComputer").textContent = computer;
+        document.getElementById("outputTotal").textContent = total;
+        document.getElementById("outputPercentage").textContent = percentage.toFixed(2);
+        document.getElementById("outputGrade").textContent = grade;
+    </script>
+</body>
+
+</html>
